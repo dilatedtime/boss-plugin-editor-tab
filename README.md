@@ -1,50 +1,44 @@
-# BOSS Code Editor Tab Plugin
+# BOSS Code Editor Tab
 
-A dynamic plugin that provides code editor tabs in the main panel area of BOSS Console.
+This plugin provides the main code-editing tabs in BOSS. It combines a desktop editor, live file tracking, language-server navigation, Markdown preview, diff views, and optional AI-assisted edits in one plugin.
+
+This repository is a fork of [risa-labs-inc/boss-plugin-editor-tab](https://github.com/risa-labs-inc/boss-plugin-editor-tab).
 
 ## Features
 
-- Syntax highlighting for 50+ languages (via RSyntaxTextArea)
-- Code folding
-- Bracket matching
-- Line numbers with fold indicators
-- Run gutter icons for detected main functions
-- File modification tracking with save support (Cmd+S)
-- Theme integration with BOSS themes
+- Syntax colouring for more than 50 languages
+- Line numbers, code folding, bracket matching, and run-gutter actions
+- Save, autosave, and external-file change handling
+- Language detection and LSP navigation
+- Markdown preview with Mermaid support and sanitised HTML
+- Side-by-side and unified diff views
+- Inline AI edits, tab completion, and reviewable suggestions
+- Composer sessions that collect proposed changes before you accept them
+- BOSS theme and keyboard-shortcut integration
+- MCP tools for reading and editing files or live editor buffers
+
+AI features use the optional AI Gateway and Secret Manager plugins. The editor still works when those plugins are absent.
 
 ## Requirements
 
-- BOSS Console 8.16.26 or later
-- Plugin API 1.0.11 or later
+- BOSS 9.5.7 or newer
+- BOSS Plugin API 1.0.87 or newer
+- JDK 17 for local builds
+
+The plugin manifest is stamped from `build.gradle.kts` during the build. Change the Gradle version when preparing a release instead of editing the manifest version by hand.
+
+## Build and test
+
+```bash
+./gradlew test
+./gradlew buildPluginJar
+```
+
+The plugin JAR is written to `build/libs/`. Do not run the BOSS application as part of an automated test. Install the built JAR into BOSS and test the UI manually when needed.
 
 ## Installation
 
-1. Download the latest JAR from the [Releases](https://github.com/risa-labs-inc/boss-plugin-editor-tab/releases) page
-2. Open BOSS Console
-3. Go to Settings > Plugins > Install from File
-4. Select the downloaded JAR file
-
-Or install via Plugin Store in BOSS Console.
-
-## Building
-
-```bash
-./gradlew jar
-```
-
-The plugin JAR will be created in `build/libs/`.
-
-## Supported Languages
-
-The editor supports syntax highlighting for many languages including:
-- Kotlin, Java, Scala
-- JavaScript, TypeScript
-- Python, Ruby, PHP
-- C, C++, Rust, Go
-- HTML, CSS, XML, JSON, YAML
-- Markdown, TOML
-- SQL
-- And many more...
+Install the released plugin from the BOSS Toolbox. For a local build, copy the generated JAR into `~/.boss/plugins/`, then start BOSS yourself.
 
 ## License
 
